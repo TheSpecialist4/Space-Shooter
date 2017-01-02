@@ -10,6 +10,7 @@ public class Bounds {
 public class PlayerController : MonoBehaviour {
 
 	private Rigidbody rigidBody;
+	private AudioSource audioSource;
 
 	public Bounds bounds;
 	public float speed;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void Start () {
 		rigidBody = GetComponent<Rigidbody>();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	void FixedUpdate () {
@@ -47,6 +49,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButton("Fire1") && Time.time > nextShotTime) {
 			nextShotTime = Time.time + shotRate;
 			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			audioSource.Play();
 		}
 	}
 }
